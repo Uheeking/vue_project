@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
-    <h3>유희왕의 참고사이트 블로그</h3>
-  </div>
-  <div>
+    <h2>오늘은 무얼 하실 예정이신가요?</h2>
+    <h2><font-awesome-icon icon="calendar" class="icon" /> TO DO LIST</h2>
     <div></div>
   </div>
 </template>
@@ -16,21 +15,19 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+/* .hello{
+  width: 100vh;
+  height: 200vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://pbs.twimg.com/media/DubukDVU8AE5rgO.jpg");
+} */
+h2 {
+  color: white;
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.icon{
+  color: white;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-
 </style>
