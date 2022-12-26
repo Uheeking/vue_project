@@ -14,9 +14,13 @@ export default {
   },
   methods: {
     addTodo() {
-      console.log(this.newTodoItem)
-      localStorage.setItem(this.newTodoItem, this.newTodoItem)
-      this.$router.go()
+      if (this.newTodoItem !== '') {
+        var obj = { completed: false, item: this.newTodoItem }
+        // (텍스트,텍스트) 가 아닌 (텍스트, 불린) 을 저장
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
+        console.log(this.newTodoItem)
+        this.$router.go()
+      }
     }
   }
 }
@@ -38,16 +42,17 @@ input:focus {
   font-size: 0.9rem;
 }
 .buttonAdd {
+  cursor: pointer;
   float: right;
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 0 30px;
   background-color: red;
   opacity: 0.7;
   color: white;
   border: none;
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: bolder;
 }
 </style>
