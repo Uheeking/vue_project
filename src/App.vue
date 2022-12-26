@@ -1,8 +1,9 @@
 <template>
 <div class="background">
   <nav>
-    <router-link to="/">React</router-link> |
-    <router-link to="/about">Vue</router-link> |
+    <router-link to="/">First</router-link> |
+    <router-link to="/main">Second</router-link> |
+    <router-link to="/about">Third</router-link> |
   </nav>
   <router-view/>
   </div>
