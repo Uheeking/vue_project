@@ -1,13 +1,11 @@
 <template>
-  <div class="weather color">
+  <div class="weather">
     <div class="CurrIcon">
       <span>
-        <i class='weatherIcon[icon]'></i>
+        <i :class='weatherIcon[icon]'></i>
       </span>
     </div>
     <div class="CurrTemp">{{ temp }}</div>
-    {{ weatherIcon[icon] }}
-    {{ icon }}
   </div>
 </template>
 <script>
@@ -25,11 +23,11 @@ export default {
         '02': 'fas fa-cloud-sun',
         '03': 'fas fa-cloud',
         '04': 'fas fa-cloud-meatball',
-        '09': 'fas fa-cloud-sun-rain'
-        // 10: 'fas fa-cloud-showers-heavy',
-        // 11: 'fas fa-poo-storm',
-        // 13: 'far fa-snowflake',
-        // 50: 'fas fa-smog'
+        '09': 'fas fa-cloud-sun-rain',
+        10: 'fas fa-cloud-showers-heavy',
+        11: 'fas fa-poo-storm',
+        13: 'far fa-snowflake',
+        50: 'fas fa-smog'
       }
     }
   },
@@ -51,9 +49,16 @@ export default {
 </script>
 
 <style scoped>
-.color {
+.weather {
   color: white;
   font-size: 1rem;
   font-weight: bolder;
+  display: flex;
+}
+.CurrIcon{
+  font-size: 3em;
+}
+.CurrTemp{
+  font-size: 3em;
 }
 </style>
