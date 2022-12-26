@@ -5,6 +5,7 @@
     <ToDoList />
     <ToDoClean />
     <AppClock />
+    <Weather />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import AppClock from '@/components/AppClock.vue'
 import ToDoInput from '@/components/ToDoInput.vue'
 import ToDoList from '@/components/ToDoList.vue'
 import ToDoClean from '@/components/ToDoClean.vue'
+import Weather from '@/components/WeatherVue.vue'
 
 export default {
   name: 'HomeView',
@@ -23,7 +25,8 @@ export default {
     AppClock,
     ToDoInput,
     ToDoList,
-    ToDoClean
+    ToDoClean,
+    Weather
   }
 }
 </script>
