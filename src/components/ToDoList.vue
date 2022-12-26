@@ -13,7 +13,7 @@
         >
           <i class="fas fa-solid fa-check"></i>
         </span>
-        <span class="removeBtn" @click="removeTodo(todoItem, index)">
+        <span class="removeBtn" @click="removeTodo(todoItem.item, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
