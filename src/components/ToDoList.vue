@@ -7,6 +7,7 @@
         :class="[todoItem.completed === false ? 'liBtn' : 'liBtnCompleted']"
       >
         {{ todoItem.item }}
+        <div class="BtnClass">
         <span
           :class="[todoItem.completed === false ? 'checkBtn' : 'checkBtnCompleted']"
           @click="changeThema(todoItem, index)"
@@ -16,6 +17,7 @@
         <span class="removeBtn" @click="removeTodo(todoItem.item, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
+        </div>
       </li>
     </ul>
   </div>
@@ -68,14 +70,17 @@ export default {
 .checkBtn {
   cursor: pointer;
   color: #62acde;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .checkBtnCompleted {
   color: #b3adad;
+  margin-right: 10px;
+}
+.BtnClass{
+  margin-left: auto;
 }
 .removeBtn {
   cursor: pointer;
-  margin-left: auto;
   color: #de4343;
 }
 ul {

@@ -42,11 +42,11 @@ input:focus {
   font-size: 0.9rem;
 }
 .buttonAdd {
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
   float: right;
   height: 50px;
   line-height: 50px;
-  border-radius: 5px;
   padding: 0 30px;
   background-color: red;
   opacity: 0.7;
