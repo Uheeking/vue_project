@@ -1,46 +1,13 @@
 <template>
-  <div id="weather" class="color">
-    <!-- 날씨 정보가 있을 경우 -->
-    <div v-if="typeof weather.main != 'undefined'">
-      <div :title="weather.weather[0].main">
-        <!-- Clear -->
-        <v-icon v-if="code == 800">{{ icons[5] }}</v-icon>
-        <!-- Thunderstorm -->
-        <v-icon v-else-if="code.substr(0, 1) == 2">
-          {{ icons[0] }}
-        </v-icon>
-        <!-- Drizzle -->
-        <v-icon v-else-if="code.substr(0, 1) == 3">
-          {{ icons[1] }}
-        </v-icon>
-        <!-- Rain -->
-        <v-icon v-else-if="code.substr(0, 1) == 5">
-          {{ icons[2] }}
-        </v-icon>
-        <!-- Snow -->
-        <v-icon v-else-if="code.substr(0, 1) == 6">
-          {{ icons[3] }}
-        </v-icon>
-        <!-- Atmosphere -->
-        <v-icon v-else-if="code.substr(0, 1) == 7">
-          {{ icons[4] }}
-        </v-icon>
-        <!-- Clouds -->
-        <v-icon v-else>
-          {{ icons[6] }}
-        </v-icon>
-      </div>
-      <div>{{ Math.round(temp) }}℃</div>
+  <div class="weather color">
+    <div class="CurrIcon">
+      <span>
+        <i class='weatherIcon[icon]'></i>
+      </span>
     </div>
-    <!-- 날씨 정보가 없을 경우 -->
-    <div v-else>
-      <div>
-        <v-icon>mdi-cancel</v-icon>
-      </div>
-      <div>
-        {{ weather.cod }}
-      </div>
-    </div>
+    <div class="CurrTemp">{{ temp }}</div>
+    {{ weatherIcon[icon] }}
+    {{ icon }}
   </div>
 </template>
 <script>
@@ -53,15 +20,17 @@ export default {
       code: '',
       temp: 0,
       // 날씨 표현 시 사용될 icon 배열
-      icons: [
-        'mdi-weather-lightning-rainy', // 2xx : Thunderstorm
-        'mdi-weather-rainy', // 3xx : Drizzle
-        'mdi-weather-pouring', // 5xx : Rain
-        'mdi-weather-snowy', // 6xx : Snow
-        'mdi-weather-fog', // 7xx : Atmosphere
-        'mdi-weather-sunny', // 800 : Clear
-        'mdi-weather-cloudy' // 8xx : Clouds
-      ]
+      weatherIcon: {
+        '01': 'fas fa-sun',
+        '02': 'fas fa-cloud-sun',
+        '03': 'fas fa-cloud',
+        '04': 'fas fa-cloud-meatball',
+        '09': 'fas fa-cloud-sun-rain'
+        // 10: 'fas fa-cloud-showers-heavy',
+        // 11: 'fas fa-poo-storm',
+        // 13: 'far fa-snowflake',
+        // 50: 'fas fa-smog'
+      }
     }
   },
   mounted() {
@@ -72,20 +41,19 @@ export default {
         return response.json()
       })
       .then((result) => {
-        this.weather = result // 날씨 정보
-        this.temp = result.main.temp // 기온
-        this.code = result.weather[0].id.toString() // 날씨 코드
+        this.icon = result.weather[0].icon.substr(0, 2) // 날씨 정보
+        this.temp = Math.floor(result.main.temp) + 'º' // 기온
+        // weatherIcon[$Icon]
       })
+    console.log(this.icon)
   }
 }
 </script>
 
 <style scoped>
-.color{
+.color {
   color: white;
-}
-#weather {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: bolder;
 }
 </style>
