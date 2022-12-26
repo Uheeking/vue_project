@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Title />
+    <ToDoInput class='todoInput' />
     <ToDoList />
     <AppClock />
   </div>
@@ -10,12 +11,13 @@
 // @ is an alias to /src
 import Title from '@/components/Title.vue'
 import AppClock from '@/components/AppClock.vue'
+import ToDoInput from '@/components/ToDoInput.vue'
 import ToDoList from '@/components/ToDoList.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    Title, AppClock, ToDoList
+    Title, AppClock, ToDoInput, ToDoList
   }
 }
 </script>
@@ -28,6 +30,7 @@ export default {
   background-size: cover;
   background-image: url("https://pbs.twimg.com/media/DubukDVU8AE5rgO.jpg");
 }
+
 .image_uheeking {
   width: 300px;
 }
