@@ -36,8 +36,8 @@ export default {
   color: white;
   position: absolute;
   left: 50%;
-  top: 64%;
+  top: 54%;
   margin-left: -175px;
-  margin-top: -150px;
+  margin-top: -261px;
 }
 </style>

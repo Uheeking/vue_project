@@ -16,6 +16,7 @@ export default {
 
 <style scoped>
 h2 {
+  margin-top: 100px;
   color: white;
   margin: 40px 0 0;
 }

@@ -2,7 +2,7 @@
   <div class="weather">
     <div class="CurrIcon">
       <span>
-        <i :class='weatherIcon[icon]'></i>
+        <i :class="weatherIcon[icon]"></i>
       </span>
     </div>
     <div class="CurrTemp">{{ temp }}</div>
@@ -51,14 +51,21 @@ export default {
 <style scoped>
 .weather {
   color: white;
-  font-size: 1rem;
   font-weight: bolder;
   display: flex;
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  left: 60%;
+  top: 65%;
+  margin-left: -175px;
+  margin-top: -261px;
+  justify-content: center;
 }
-.CurrIcon{
-  font-size: 3em;
+.CurrIcon {
+  font-size: 2em;
 }
-.CurrTemp{
-  font-size: 3em;
+.CurrTemp {
+  font-size: 2em;
 }
 </style>

@@ -8,15 +8,17 @@
       >
         {{ todoItem.item }}
         <div class="BtnClass">
-        <span
-          :class="[todoItem.completed === false ? 'checkBtn' : 'checkBtnCompleted']"
-          @click="changeThema(todoItem, index)"
-        >
-          <i class="fas fa-solid fa-check"></i>
-        </span>
-        <span class="removeBtn" @click="removeTodo(todoItem.item, index)">
-          <i class="fas fa-trash-alt"></i>
-        </span>
+          <span
+            :class="[
+              todoItem.completed === false ? 'checkBtn' : 'checkBtnCompleted'
+            ]"
+            @click="changeThema(todoItem, index)"
+          >
+            <i class="fas fa-solid fa-check"></i>
+          </span>
+          <span class="removeBtn" @click="removeTodo(todoItem.item, index)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
         </div>
       </li>
     </ul>
@@ -26,8 +28,7 @@
 export default {
   data: function () {
     return {
-      todoItems: [],
-      thema: 'not check'
+      todoItems: []
     }
   },
   methods: {
@@ -59,7 +60,9 @@ export default {
   created: function () {
     if (localStorage.length > 0) {
       for (var i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+        this.todoItems.push(
+          JSON.parse(localStorage.getItem(localStorage.key(i)))
+        )
       }
     }
   }
@@ -76,7 +79,7 @@ export default {
   color: #b3adad;
   margin-right: 10px;
 }
-.BtnClass{
+.BtnClass {
   margin-left: auto;
 }
 .removeBtn {

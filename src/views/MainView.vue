@@ -27,6 +27,7 @@ export default {
 
 <style scoped>
 .home {
+  margin-top: -125px;
   width: 100%;
   height: 100vh;
   background-repeat: no-repeat;
