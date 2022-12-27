@@ -1,5 +1,5 @@
 <template>
-  <div class="inputBox shadow">
+  <div class="inputBox">
     <input type="text" v-model="newTodoItem" @keyup.enter="addTodo" />
     <button class="buttonAdd" @click="addTodo">추가</button>
   </div>
@@ -39,7 +39,7 @@ input:focus {
 }
 .inputBox input {
   border-style: none;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
 }
 .buttonAdd {
   border-radius: 0 5px 5px 0;

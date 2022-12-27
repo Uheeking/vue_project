@@ -27,9 +27,11 @@ export default {
 
 <style scoped>
 .home {
-  margin-top: -125px;
+  z-index: -1;
+  position: absolute;
+  margin-top: -110px;
   width: 100%;
-  height: 100vh;
+  height: 102vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('https://pbs.twimg.com/media/DubukDVU8AE5rgO.jpg');
