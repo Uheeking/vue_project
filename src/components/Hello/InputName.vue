@@ -24,7 +24,7 @@ export default {
         alert('fill in the blank!')
       } else {
         console.log('Hello ' + this.name)
-        this.name = 'Hello ' + this.name + '!'
+        this.name = 'Hello ' + this.name + '👋🏻👋🏻'
         this.disabled = 1
       }
     }
