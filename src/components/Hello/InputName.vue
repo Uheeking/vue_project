@@ -39,7 +39,7 @@ export default {
   font-weight: bolder;
   position: absolute;
   left: 50%;
-  top: 62%;
+  top: 68%;
   margin-left: -175px;
   margin-top: -261px;
 }

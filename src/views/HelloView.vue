@@ -1,20 +1,20 @@
 <template>
   <div class="home">
-    <AppClock />
     <InputName />
-    <Weather />
+    <AppClock />
+    <DayWeather />
   </div>
 </template>
 
 <script>
+import DayWeather from '@/components/Hello/DayWeather.vue'
 import AppClock from '@/components/Hello/AppClock.vue'
-import Weather from '@/components/Hello/WeatherVue.vue'
 import InputName from '@/components/Hello/InputName.vue'
 export default {
   name: 'HelloView',
   components: {
+    DayWeather,
     AppClock,
-    Weather,
     InputName
   }
 }

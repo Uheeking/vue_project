@@ -1,5 +1,6 @@
 <template>
   <div class="weather">
+    <div class="day">{{ today }}</div>
     <div class="CurrIcon">
       <span>
         <i :class="weatherIcon[icon]"></i>
@@ -9,9 +10,14 @@
   </div>
 </template>
 <script>
+import dayjs from 'dayjs'
 export default {
+  component: {
+    dayjs
+  },
   data: function () {
     return {
+      today: dayjs().format('YYYY-MM-DD'),
       api_key: '688d07929ce4506e63cb5e391511a3eb',
       url_base: 'https://api.openweathermap.org/data/2.5/',
       weather: {},
@@ -49,21 +55,25 @@ export default {
 </script>
 
 <style scoped>
+.day{
+  font-size: 2rem;
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
 .weather {
   color: white;
   font-weight: bolder;
   display: flex;
-  width: 200px;
-  height: 50px;
   position: absolute;
-  left: 60%;
-  top: 65%;
+  left: 54%;
+  top: 50%;
   margin-left: -175px;
   margin-top: -261px;
   justify-content: center;
 }
 .CurrIcon {
   font-size: 2em;
+  padding-right: 5px;
 }
 .CurrTemp {
   font-size: 2em;
