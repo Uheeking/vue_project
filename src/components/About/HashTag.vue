@@ -4,18 +4,23 @@
       <div class="white-bg">
         <h2>키워드 선택</h2>
         <h4>{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
-        <span
-          @click="changeColor(i)"
-          :class="[thema[i] === 'light' ? 'dark' : 'light']"
-          v-for="(key, i) in keyword"
-          :key="i"
-          >{{ key }}</span
-        >
-        <h2>키워드 선택</h2>
-        <h4>{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
-        <h2>키워드 선택</h2>
-        <h4>{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
+          <span
+            @click="changeColor(i)"
+            :class="[thema[i] === 'light' ? 'light same' : 'dark same']"
+            v-for="(key, i) in keyword"
+            :key="i"
+            >{{ key }}</span
+          >
+        <h2>URL 입력</h2>
+        <h4>적고자 하는 URL을 입력해주세요.</h4>
+        <input class="url" />
+        <h2>사이트 설명</h2>
+        <h4>{{ name }}님이 업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
+        <textarea class="textarea" />
+        <br />
+        <br />
         <span class="close" @click="modal = false">닫기</span>
+        <br />
       </div>
     </div>
     <h2>키워드를 선택해주세요.</h2>
@@ -67,30 +72,29 @@ export default {
   color: white;
   cursor: pointer;
 }
-/* .same {
+.url{
+    padding: 10px;
+    font-size: medium;
+    width: 80%;
+}
+.textarea{
+    width: 80%;
+    height: 100px;
+    margin: 0 auto;
+}
+.same {
   padding: 10px 20px;
   margin-right: 10px;
   border-radius: 50px;
   color: white;
   font-weight: 700;
   cursor: pointer;
-} */
+  display: inline-block;
+}
 .light {
-  background-color: gray;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 50px;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
+  background-color: rgb(202, 201, 201);
 }
 .dark {
-  background-color: rgba(169, 169, 169, 0.143);
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 50px;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
+  background-color: gray;
 }
 </style>
