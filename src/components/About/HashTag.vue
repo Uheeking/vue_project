@@ -3,7 +3,8 @@
     <div class="black-bg">
       <div class="white-bg">
         <h2>키워드 선택</h2>
-        <h4>{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
+        <h4 v-if="name">{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
+        <h4 v-else>업로드하고자 하는 키워드를 선택해주세요.</h4>
           <span
             @click="changeColor(i)"
             :class="[thema[i] === 'light' ? 'light same' : 'dark same']"
