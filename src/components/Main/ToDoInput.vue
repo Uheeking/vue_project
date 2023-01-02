@@ -15,7 +15,7 @@ export default {
   methods: {
     addTodo() {
       if (this.newTodoItem !== '') {
-        var obj = { completed: false, item: this.newTodoItem }
+        const obj = { completed: false, item: this.newTodoItem }
         // (텍스트,텍스트) 가 아닌 (텍스트, 불린) 을 저장
         localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
         console.log(this.newTodoItem)

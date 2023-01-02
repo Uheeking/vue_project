@@ -39,17 +39,17 @@ export default {
     changeThema(todoItem, index) {
       if (todoItem.completed === false) {
         console.log(todoItem, index)
-        for (var i = 0; i < localStorage.length; i++) {
+        for (let i = 0; i < localStorage.length; i++) {
           if (todoItem.item === localStorage.key(i)) {
-            var obj = { completed: true, item: todoItem.item }
+            const obj = { completed: true, item: todoItem.item }
             localStorage.setItem(todoItem.item, JSON.stringify(obj))
           }
         }
         this.$router.go()
       } else {
-        for (var j = 0; j < localStorage.length; j++) {
+        for (let j = 0; j < localStorage.length; j++) {
           if (todoItem.item === localStorage.key(j)) {
-            var obj2 = { completed: false, item: todoItem.item }
+            const obj2 = { completed: false, item: todoItem.item }
             localStorage.setItem(todoItem.item, JSON.stringify(obj2))
           }
         }
@@ -59,7 +59,7 @@ export default {
   },
   created: function () {
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         if (
           localStorage.getItem(localStorage.key(i)) ===
           localStorage.getItem('name')
