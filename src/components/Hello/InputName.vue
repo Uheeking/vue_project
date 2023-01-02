@@ -24,6 +24,7 @@ export default {
         alert('fill in the blank!')
       } else {
         console.log('Hello ' + this.name)
+        localStorage.setItem('name', this.name)
         this.name = 'Hello ' + this.name + '👋🏻👋🏻'
         this.disabled = 1
       }
