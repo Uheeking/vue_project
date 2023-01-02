@@ -60,9 +60,16 @@ export default {
   created: function () {
     if (localStorage.length > 0) {
       for (var i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(
-          JSON.parse(localStorage.getItem(localStorage.key(i)))
-        )
+        if (
+          localStorage.getItem(localStorage.key(i)) ===
+          localStorage.getItem('name')
+        ) {
+          return
+        } else {
+          this.todoItems.push(
+            JSON.parse(localStorage.getItem(localStorage.key(i)))
+          )
+        }
       }
     }
   }
