@@ -1,0 +1,25 @@
+<template>
+  <div id="app">
+    <div class="custom-file">
+      <input id="customFile" type="file" @change="handleFileChange" />
+      <label class="custom-file-label" for="customFile">{{ file_name }}</label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  el: '#app',
+  data() {
+    return {
+      file_name: '파일을 선택하세요.',
+      message: 'Hello, world'
+    }
+  },
+  methods: {
+    handleFileChange(e) {
+      this.file_name = e.target.files[0].name
+    }
+  }
+}
+</script>
