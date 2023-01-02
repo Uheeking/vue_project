@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h2>오늘은 무얼 하실 예정이신가요?</h2>
+    <h2>{{ name }}님 오늘은 무얼 하실 예정이신가요?</h2>
     <h1>
       <span>
         <i class="fas fa-regular fa-calendar"> TO DO LIST</i>
@@ -12,8 +12,10 @@
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data() {
+    return {
+      name: localStorage.getItem('name')
+    }
   }
 }
 </script>
@@ -25,7 +27,6 @@ export default {
 h1 {
   color: white;
   margin: 40px 0 20px 0;
-
 }
 h2 {
   color: white;

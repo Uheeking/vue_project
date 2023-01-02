@@ -64,7 +64,8 @@ export default {
           localStorage.getItem(localStorage.key(i)) ===
           localStorage.getItem('name')
         ) {
-          return
+          console.log(localStorage.getItem(localStorage.key(i)))
+          console.log(localStorage.getItem('name'))
         } else {
           this.todoItems.push(
             JSON.parse(localStorage.getItem(localStorage.key(i)))
