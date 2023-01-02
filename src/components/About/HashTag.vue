@@ -81,6 +81,7 @@ export default {
     width: 80%;
     height: 100px;
     margin: 0 auto;
+    font-size: large;
 }
 .same {
   padding: 10px 20px;
