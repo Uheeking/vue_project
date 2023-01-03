@@ -4,6 +4,7 @@
     <router-link to="/">First</router-link> |
     <router-link to="/main">Second</router-link> |
     <router-link to="/about">Third</router-link> |
+    <router-link to="/test">Test</router-link> |
   </nav>
   <router-view/>
   </div>

@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var movies = require("../movies.json");
+var movies = require("./movies.json");
 
 router.get("/", function (req, res, next) {
-  res.json({movie : movies[0]});
+  res.send(movies);
 });
 
 module.exports = router;

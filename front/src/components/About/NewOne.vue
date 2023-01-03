@@ -1,32 +1,29 @@
 <template>
   <div v-if="movie">
-    <div>나는야 유희왕</div>
     <p>{{ movie.id }}</p>
     <p>{{ movie.name }}</p>
     <p>{{ movie.rate }}</p>
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   components: {},
   data() {
     return {
-      movie: null
+      movie: []
     }
   },
-  setup() {},
   created() {
-    this.$http.get('/api/url').then(
-      ((res) => {
-        const movie = res.data.movie
-        if (movie) this.movie = movie
-      }).catch((err) => {
+    axios
+      .get('/api/movies')
+      .then((res) => {
+        this.movie = res.data[0]
+        console.log(res.data)
+      })
+      .catch((err) => {
         console.error(err)
       })
-    )
-  },
-  mounted() {},
-  unmounted() {},
-  methods: {}
+  }
 }
 </script>
