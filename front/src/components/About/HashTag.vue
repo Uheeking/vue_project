@@ -1,37 +1,45 @@
 <template>
-  <div>
-    <div class="black-bg" v-if="modal = false">
-      <div class="white-bg">
-        <h2>키워드 선택</h2>
-        <h4 v-if="name">{{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.</h4>
-        <h4 v-else>업로드하고자 하는 키워드를 선택해주세요.</h4>
-          <span
-            @click="changeColor(i)"
-            :class="[thema[i] === 'light' ? 'light same' : 'dark same']"
-            v-for="(key, i) in keyword"
-            :key="i"
-            >{{ key }}</span
-          >
-        <h2>URL 입력</h2>
-        <h4>적고자 하는 URL을 입력해주세요.</h4>
-        <input class="url" />
-        <h2>사이트 설명</h2>
-        <h4 v-if="name">{{ name }}님이 업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
-        <h4 v-else>업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
-        <textarea class="textarea" />
-        <br />
-        <br />
-        <span class="close" style="margin-right: 10px">업로드</span>
-        <span class="close" @click="modal = false">닫기</span>
-        <br />
-      </div>
+  <div class="black-bg" v-if="modal == true">
+    <div class="white-bg">
+      <!-- <form v-on:submit="onSubmitForm"> -->
+      <h2>키워드 선택</h2>
+      <h4 v-if="name">
+        {{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.
+      </h4>
+      <h4 v-else>업로드하고자 하는 키워드를 선택해주세요.</h4>
+      <span
+        @click="changeColor(i)"
+        :class="[thema[i] === 'light' ? 'light same' : 'dark same']"
+        v-for="(key, i) in keyword"
+        :key="i"
+        >{{ key }}</span
+      >
+      <h2>URL 입력</h2>
+      <h4>적고자 하는 URL을 입력해주세요.</h4>
+      <input class="url" v-model="url" />
+      <h2>사이트 설명</h2>
+      <h4 v-if="name">
+        {{ name }}님이 업로드하고자 하는 사이트에 대한 설명을 적어주세요.
+      </h4>
+      <h4 v-else>업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
+      <textarea class="textarea" v-model="description" />
+      <br />
+      <br />
+      <span class="close upload" @click="upload(i)">업로드</span>
+      <span class="close upload" @click="ee(i)">업로드</span>
+      <span class="close" @click="modal = false">닫기</span>
+      <br />
+      <!-- </form> -->
     </div>
+  </div>
+  <div>
     <h2>키워드를 선택해주세요.</h2>
     <h4 class="modal_h4" @click="modal = true">클릭</h4>
     <input placeholder="#해시태그를작성하세요" />
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   name: 'App',
   data() {
@@ -39,16 +47,46 @@ export default {
       modal: false,
       thema: ['light', 'light'],
       name: localStorage.getItem('name'),
-      keyword: ['취업공고✍🏻', '참고사이트📝']
+      keyword: ['취업공고✍🏻', '참고사이트📝'],
+      url: '',
+      description: '',
+      index: new Set()
     }
   },
   methods: {
     changeColor(i) {
       if (this.thema[i] === 'light') {
         this.thema[i] = 'dark'
+        this.index.add(i)
       } else {
         this.thema[i] = 'light'
       }
+    },
+    upload(i) {
+      if (this.thema[i] === 'light') {
+        console.log('pass')
+      } else {
+        for (let j = 0; j < this.index.size; j++) {
+          console.log(this.keyword[j])
+        }
+      }
+      console.log('url', this.url)
+      console.log('description', this.description)
+    },
+    ee(i) {
+      axios
+        .post('/api/movies/ee', {
+          keyword: this.keyword,
+          url: this.url,
+          description: this.description
+        })
+        .then((res) => {
+          // this.movie = res.data[0]
+          // console.log(res.data)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
@@ -76,16 +114,22 @@ export default {
   color: white;
   cursor: pointer;
 }
-.url{
-    padding: 10px;
-    font-size: medium;
-    width: 80%;
+.url {
+  padding: 10px;
+  font-size: medium;
+  width: 80%;
 }
-.textarea{
-    width: 80%;
-    height: 100px;
-    margin: 0 auto;
-    font-size: large;
+.textarea {
+  width: 80%;
+  height: 100px;
+  margin: 0 auto;
+  font-size: large;
+}
+.modal_h4 {
+  cursor: pointer;
+}
+.upload {
+  margin-right: 10px;
 }
 .same {
   padding: 10px 20px;
