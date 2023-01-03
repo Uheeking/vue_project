@@ -3,6 +3,7 @@ node_modules
 /dist
 public/css
 public/js
+.env
 
 # local env files
 .env.local
