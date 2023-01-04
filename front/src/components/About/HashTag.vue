@@ -1,7 +1,6 @@
 <template>
   <div class="black-bg" v-if="modal == true">
     <div class="white-bg">
-      <!-- <form v-on:submit="onSubmitForm"> -->
       <h2>키워드 선택</h2>
       <h4 v-if="name">
         {{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.
@@ -25,11 +24,9 @@
       <textarea class="textarea" v-model="description" />
       <br />
       <br />
-      <span class="close upload" @click="upload(i)">업로드</span>
       <span class="close upload" @click="ee(i)">업로드</span>
       <span class="close" @click="modal = false">닫기</span>
       <br />
-      <!-- </form> -->
     </div>
   </div>
   <div>
@@ -60,33 +57,33 @@ export default {
         this.index.add(i)
       } else {
         this.thema[i] = 'light'
+        this.index.delete(i)
       }
     },
-    upload(i) {
+    ee(i) {
       if (this.thema[i] === 'light') {
         console.log('pass')
       } else {
-        for (let j = 0; j < this.index.size; j++) {
-          console.log(this.keyword[j])
+        console.log(this.index)
+        const uploadKeyword = []
+        for (const value of this.index) {
+          // console.log(this.keyword[value])
+          uploadKeyword.push(this.keyword[value])
         }
+        axios
+          .post('/api/movies/ee', {
+            keyword: uploadKeyword,
+            url: this.url,
+            description: this.description
+          })
+          .then((res) => {
+            // this.movie = res.data[0]
+            console.log(res.data)
+          })
+          .catch((err) => {
+            console.error(err)
+          })
       }
-      console.log('url', this.url)
-      console.log('description', this.description)
-    },
-    ee(i) {
-      axios
-        .post('/api/movies/ee', {
-          keyword: this.keyword,
-          url: this.url,
-          description: this.description
-        })
-        .then((res) => {
-          // this.movie = res.data[0]
-          console.log(res.data)
-        })
-        .catch((err) => {
-          console.error(err)
-        })
     }
   }
 }
