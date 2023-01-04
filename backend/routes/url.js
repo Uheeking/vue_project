@@ -17,7 +17,7 @@ router.get("/", function (req, res, next) {
   res.send(movies);
 });
 
-router.post("/ee", function (req, res, next) {
+router.post("/write", function (req, res, next) {
   connection.query(
     "INSERT INTO write_table (keyword, url, description) VALUES ('" +
       req.body.keyword +
@@ -39,10 +39,24 @@ router.post("/ee", function (req, res, next) {
       console.log("여기야", rows);
     }
   );
-  // res.send(movies);
-  // const keyword = req.body;
-  // console.log("print", req.body);
-  // res.send('전달됨', req.body)
 });
+
+router.get("/read", function (req, res, next) {
+  connection.query(
+    "SELECT * FROM write_table",
+    (error, rows, fields) => {
+      if (rows) {
+        return res.send({ result: '데이터가 제대로 전송되었습니다. ' });
+      }
+      if (error) {
+        return res.send({
+          message: "데이터 출력 중에 에러가 발생했습니다.",
+          other: error,
+        });
+      }
+      console.log("여기야", rows);
+    }
+  );
+})
 
 module.exports = router;

@@ -1,25 +1,27 @@
 <template>
   <div id="app">
-    <div class="custom-file">
-      <input id="customFile" type="file" @change="handleFileChange" />
-      <label class="custom-file-label" for="customFile">{{ file_name }}</label>
-    </div>
+    <div></div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   el: '#app',
   data() {
     return {
-      file_name: '파일을 선택하세요.',
-      message: 'Hello, world'
+      nes: ''
     }
   },
-  methods: {
-    handleFileChange(e) {
-      this.file_name = e.target.files[0].name
-    }
+  created() {
+    axios
+      .post('/api/upload/read')
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 }
 </script>
