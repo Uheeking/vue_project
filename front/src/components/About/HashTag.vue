@@ -30,9 +30,9 @@
     </div>
   </div>
   <div>
-    <h2>키워드를 선택해주세요.</h2>
+    <span>업로드하시고자 하면 클릭해주세요.</span>
     <h4 class="modal_h4" @click="modal = true">클릭</h4>
-    <input placeholder="#해시태그를작성하세요" />
+    <h2>키워드를 선택해주세요.</h2>
   </div>
 </template>
 <script>
