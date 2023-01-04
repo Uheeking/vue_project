@@ -5,6 +5,18 @@ const history = require("connect-history-api-fallback");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// var config = require("./config/config.json");
+// const mysql = require("mysql2");
+
+// const connection = mysql.createConnection(config);
+// connection.connect(function (err) {
+//   if (err) {
+//     console.error("mysql connection error");
+//     console.error(err);
+//     throw err;
+//   }
+// });
+
 var urlRouter = require("./routes/url");
 
 var app = express();

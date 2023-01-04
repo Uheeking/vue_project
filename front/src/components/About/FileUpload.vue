@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div></div>
+    <div class="list" v-for="item in list" :key="item">
+      {{ item.keyword }}<br />{{ item.url }}<br />{{ item.description }}
+    </div>
   </div>
 </template>
 
@@ -10,14 +12,16 @@ export default {
   el: '#app',
   data() {
     return {
-      nes: ''
+      list: []
     }
   },
   created() {
     axios
-      .post('/api/upload/read')
+      .get('/api/upload/read')
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data.result)
+        console.log(res.data.data)
+        this.list = res.data.data
       })
       .catch((err) => {
         console.error(err)
@@ -25,3 +29,15 @@ export default {
   }
 }
 </script>
+<style scope>
+.list {
+  width: 70%;
+  margin: 0 auto;
+  background-color: #c4a5fd74;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+</style>

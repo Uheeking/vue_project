@@ -46,7 +46,8 @@ router.get("/read", function (req, res, next) {
     "SELECT * FROM write_table",
     (error, rows, fields) => {
       if (rows) {
-        return res.send({ result: '데이터가 제대로 전송되었습니다. ' });
+        return res.send({ result: '데이터를 제대로 받아왔습니다. ',
+      data: rows });
       }
       if (error) {
         return res.send({
