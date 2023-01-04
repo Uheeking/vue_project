@@ -82,7 +82,7 @@ export default {
         })
         .then((res) => {
           // this.movie = res.data[0]
-          // console.log(res.data)
+          console.log(res.data)
         })
         .catch((err) => {
           console.error(err)
