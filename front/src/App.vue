@@ -1,18 +1,41 @@
 <template>
-<div class="background">
-  <nav>
-    <router-link to="/">First</router-link> |
-    <router-link to="/main">Second</router-link> |
-    <router-link to="/about">Third</router-link> |
-    <router-link to="/test">Test</router-link> |
-  </nav>
-  <router-view/>
+  <div class="background">
+    <nav :class="{ active: isActive }">
+      <router-link to="/" @click="unactivate">First</router-link> |
+      <router-link to="/main" @click="unactivate">Second</router-link> |
+      <router-link to="/about" @click="activate"
+        >Third</router-link
+      >
+      | <router-link to="/test">Test</router-link> |
+    </nav>
+    <router-view />
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    activate() {
+      this.isActive = true
+    },
+    unactivate() {
+      this.isActive = false
+    }
+    // hostname() {
+    //   if (window.location.pathname === '/about') {
+    //   }
+    // }
+  }
+}
+</script>
 
 <style>
-body{
-  margin:0;
+body {
+  margin: 0;
 }
 
 #app {
@@ -31,8 +54,7 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.active {
+  margin-left: 90px;
 }
 </style>

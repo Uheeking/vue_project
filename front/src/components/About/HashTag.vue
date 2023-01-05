@@ -14,7 +14,8 @@
         >{{ key }}</span
       >
       <h2>URL 입력</h2>
-      <h4>적고자 하는 URL을 입력해주세요.</h4>
+      <h4 v-if="name">{{ name }}님이 적고자 하는 URL을 입력해주세요.</h4>
+      <h4 v-else>적고자 하는 URL을 입력해주세요.</h4>
       <input class="url" v-model="url" />
       <h2>사이트 설명</h2>
       <h4 v-if="name">
@@ -29,10 +30,12 @@
       <br />
     </div>
   </div>
-  <div>
-    <span>업로드하시고자 하면 클릭해주세요.</span>
+  <div class="upload_top">
+    <p class="click_p">아래의 클릭을 눌러</p>
+    <br />
+    <h3 class="click_h3">업로드하고자 하는 사이트를 적어주세요.</h3>
+    <br />
     <h4 class="modal_h4" @click="modal = true">클릭</h4>
-    <h2>키워드를 선택해주세요.</h2>
   </div>
 </template>
 <script>
@@ -71,7 +74,7 @@ export default {
           uploadKeyword.push(this.keyword[value])
         }
         axios
-          .post('/api/movies/ee', {
+          .post('/api/upload/write', {
             keyword: uploadKeyword,
             url: this.url,
             description: this.description
@@ -98,6 +101,7 @@ export default {
   padding: 20px;
 }
 .white-bg {
+  z-index: 10;
   width: 80%;
   margin: 0 auto;
   background: white;
@@ -110,6 +114,9 @@ export default {
   padding: 10px;
   color: white;
   cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 .url {
   padding: 10px;
@@ -123,7 +130,13 @@ export default {
   font-size: large;
 }
 .modal_h4 {
+  z-index: -10;
   cursor: pointer;
+  background-color: #c4a5fd74;
+  border-radius: 10px;
+  display: inline-block;
+  color: white;
+  padding: 10px;
 }
 .upload {
   margin-right: 10px;
@@ -142,5 +155,17 @@ export default {
 }
 .dark {
   background-color: gray;
+}
+.click_p {
+  margin-bottom: 0;
+  display: inline-block;
+}
+.click_h3 {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.upload_top {
+  margin-left: 90px;
 }
 </style>

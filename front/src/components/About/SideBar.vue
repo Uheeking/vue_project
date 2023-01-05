@@ -18,6 +18,8 @@
   left: 0;
   overflow-x: hidden;
   padding-top: 0;
+  margin-right: 90px;
+  display: inline-block;
 }
 
 .icon-bar a {
@@ -33,7 +35,7 @@
   background-color: #858585;
 }
 
-.active {
+/* .active {
   background-color: #5eaf13;
-}
+} */
 </style>
