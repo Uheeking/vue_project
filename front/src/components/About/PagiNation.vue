@@ -11,7 +11,7 @@
         <span class="head">{{ item.keyword }}</span
         ><br />
         <p class="content">
-          <span>{{ item.url }}</span
+          <span @click="redirect(item.url)" class="hover">{{ item.url }}</span
           ><br />
           <span>{{ item.description }}</span>
         </p>
@@ -90,6 +90,9 @@ export default {
     },
     all() {
       this.condition = 1
+    },
+    redirect(url) {
+      window.open(url, '_blank')
     },
     notices() {
       for (let i = 0; i < this.listArray.length; i++) {
@@ -171,5 +174,9 @@ export default {
 }
 .content {
   margin: 10px 0 0 0;
+}
+.hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>

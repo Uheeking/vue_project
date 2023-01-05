@@ -1,6 +1,6 @@
 <template>
   <div class="third">
-    <h2>사이트 리스트</h2>
+    <h2 class="header">사이트 리스트</h2>
     <PagiNation :list-array="list" />
   </div>
 </template>
@@ -34,6 +34,7 @@ export default {
 <style scope>
 .third {
   margin-left: 90px;
+  margin-bottom: 10px;
 }
 .order {
   text-align: right;

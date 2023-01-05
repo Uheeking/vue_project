@@ -31,11 +31,15 @@
     </div>
   </div>
   <div class="upload_top">
-    <p class="click_p">아래의 클릭을 눌러</p>
-    <br />
-    <h3 class="click_h3">업로드하고자 하는 사이트를 적어주세요.</h3>
-    <br />
-    <h4 class="modal_h4" @click="modal = true">클릭</h4>
+    <h3 class="click_h3">사이트 업로드</h3>
+    <h4
+      class="modal_h4"
+      @click="modal = true"
+      @mouseover="over()"
+      @mouseleave="overend()"
+    >
+      {{ click }}
+    </h4>
   </div>
 </template>
 <script>
@@ -50,7 +54,8 @@ export default {
       keyword: ['취업공고✍🏻', '참고사이트📝'],
       url: '',
       description: '',
-      index: new Set()
+      index: new Set(),
+      click: '클릭'
     }
   },
   methods: {
@@ -80,13 +85,20 @@ export default {
             description: this.description
           })
           .then((res) => {
-            // this.movie = res.data[0]
+            alert('업로드 되었습니다. ')
+            this.$router.go()
             // console.log(res.data)
           })
           .catch((err) => {
             console.error(err)
           })
       }
+    },
+    over() {
+      this.click = '😍'
+    },
+    overend() {
+      this.click = '클릭'
     }
   }
 }
@@ -138,6 +150,10 @@ export default {
   color: white;
   padding: 10px;
 }
+.modal_h4:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.303);
+}
 .upload {
   margin-right: 10px;
 }
@@ -164,6 +180,7 @@ export default {
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 0;
+  margin-right: 10px;
 }
 .upload_top {
   margin-left: 90px;
