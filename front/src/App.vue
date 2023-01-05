@@ -25,10 +25,6 @@ export default {
     unactivate() {
       this.isActive = false
     }
-    // hostname() {
-    //   if (window.location.pathname === '/about') {
-    //   }
-    // }
   }
 }
 </script>
@@ -54,7 +50,19 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
 }
+nav a.router-link-exact-active {
+  color: white;
+}
+nav a:nth-child(3).router-link-exact-active {
+  font-weight: bold;
+  color: #2c3e50;
+}
+nav a:nth-child(4).router-link-exact-active {
+  font-weight: bold;
+  color: #2c3e50;
+}
 .active {
   margin-left: 90px;
+  color: black;
 }
 </style>
