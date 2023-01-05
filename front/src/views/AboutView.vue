@@ -2,19 +2,19 @@
   <div class="about">
     <SideBar />
     <HashTag />
-    <FileUpload />
+    <FileList />
   </div>
 </template>
 <script>
 import SideBar from '@/components/About/SideBar.vue'
 import HashTag from '@/components/About/HashTag.vue'
-import FileUpload from '@/components/About/FileUpload.vue'
+import FileList from '@/components/About/FileList.vue'
 export default {
   name: 'AboutView',
   components: {
     SideBar,
     HashTag,
-    FileUpload
+    FileList
   }
 }
 </script>
