@@ -1,7 +1,7 @@
 <template>
   <div class="third">
     <h2>사이트 리스트</h2>
-    <PagiNation :list-array="list"/>
+    <PagiNation :list-array="list" />
   </div>
 </template>
 
@@ -35,5 +35,13 @@ export default {
 .third {
   margin-left: 90px;
 }
-
+.order {
+  text-align: right;
+  margin-bottom: 15px;
+  margin-left: 90px;
+  width: 75%;
+}
+.desc {
+  cursor: pointer;
+}
 </style>

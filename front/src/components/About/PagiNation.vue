@@ -1,6 +1,29 @@
 <template>
   <div>
-    <div class="list" v-for="item in paginatedData" :key="item">
+    <div class="order">
+      <span class="desc" @click="notices()">취업공고순 | </span>
+      <span class="desc" @click="sites()">참고사이트순 | </span>
+      <span class="desc" @click="all()">모든 사이트</span>
+    </div>
+    <!-- 기본 -->
+    <div v-if="condition === 1">
+      <div class="list" v-for="item in paginatedData" :key="item.id">
+        <span class="head">{{ item.keyword }}</span
+        ><br />
+        <p class="content">
+          <span>{{ item.url }}</span
+          ><br />
+          <span>{{ item.description }}</span>
+        </p>
+      </div>
+    </div>
+    <!-- 취업공고 -->
+    <div
+      class="list"
+      v-else-if="condition === 2"
+      v-for="item in paginatedData1"
+      :key="item.id"
+    >
       <span class="head">{{ item.keyword }}</span
       ><br />
       <p class="content">
@@ -9,6 +32,17 @@
         <span>{{ item.description }}</span>
       </p>
     </div>
+    <!-- 참고사이트 -->
+    <div class="list" v-else v-for="item in paginatedData2" :key="item">
+      <span class="head">{{ item.keyword }}</span
+      ><br />
+      <p class="content">
+        <span>{{ item.url }}</span
+        ><br />
+        <span>{{ item.description }}</span>
+      </p>
+    </div>
+
     <div class="btn-cover">
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
         이전
@@ -29,7 +63,11 @@
 export default {
   data() {
     return {
-      pageNum: 0
+      pageNum: 0,
+      array1: new Set(), // 취업공고✍🏻
+      array2: new Set(), // 참고사이트📝
+      condition: 1,
+      pageCount: 1
     }
   },
   props: {
@@ -46,26 +84,69 @@ export default {
   methods: {
     nextPage() {
       this.pageNum += 1
-      console.log('ses', this.listArray)
     },
     prevPage() {
       this.pageNum -= 1
+    },
+    all() {
+      this.condition = 1
+    },
+    notices() {
+      for (let i = 0; i < this.listArray.length; i++) {
+        if (this.listArray[i].keyword.includes('취업공고✍🏻')) {
+          this.array1.add(this.listArray[i])
+          this.condition = 2
+        }
+      }
+    },
+    sites() {
+      for (let i = 0; i < this.listArray.length; i++) {
+        if (this.listArray[i].keyword.includes('참고사이트📝')) {
+          this.array2.add(this.listArray[i])
+          this.condition = 3
+        }
+      }
+    },
+    pageCount_methods(array) {
+      if (array === this.listArray) {
+        const listLeng = array.length
+        const listSize = this.pageSize
+        console.log(listLeng, listSize)
+        let page = Math.floor(listLeng / listSize)
+        if (listLeng % listSize > 0) {
+          page += 1
+        }
+        this.pageCount = page
+      } else {
+        const listLeng = array.size
+        const listSize = this.pageSize
+        console.log(listLeng, listSize)
+        let page = Math.floor(listLeng / listSize)
+        if (listLeng % listSize > 0) {
+          page += 1
+        }
+        this.pageCount = page
+      }
     }
   },
   computed: {
-    pageCount() {
-      const listLeng = this.listArray.length
-      const listSize = this.pageSize
-      let page = Math.floor(listLeng / listSize)
-      if (listLeng % listSize > 0) {
-        page += 1
-      }
-      return page
-    },
     paginatedData() {
       const start = this.pageNum * this.pageSize
       const end = start + this.pageSize
+      this.pageCount_methods(this.listArray)
       return this.listArray.slice(start, end)
+    },
+    paginatedData1() {
+      const start = this.pageNum * this.pageSize
+      const end = start + this.pageSize
+      this.pageCount_methods(this.array1)
+      return Array.from(this.array1).slice(start, end)
+    },
+    paginatedData2() {
+      const start = this.pageNum * this.pageSize
+      const end = start + this.pageSize
+      this.pageCount_methods(this.array2)
+      return Array.from(this.array2).slice(start, end)
     }
   }
 }
