@@ -8,7 +8,7 @@
         @click="activate"
         >Third</router-link
       >
-      | <router-link to="/test">Test</router-link> |
+      | <router-link to="/study">Fourth</router-link> |
     </nav>
     <router-view />
   </div>

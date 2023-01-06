@@ -113,6 +113,7 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   padding: 20px;
+  margin-top: -100px;
 }
 .white-bg {
   position: fixed;
