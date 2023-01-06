@@ -1,9 +1,17 @@
 <template>
   <div>
     <div class="order">
-      <span class="desc" @click="notices()">취업공고순 | </span>
-      <span class="desc" @click="sites()">참고사이트순 | </span>
-      <span class="desc" @click="all()">모든 사이트</span>
+      <span
+        :class="[condition === 2 ? 'desc_click' : 'desc']"
+        @click="notices()"
+        >취업공고순 |
+      </span>
+      <span :class="[condition === 3 ? 'desc_click' : 'desc']" @click="sites()"
+        >참고사이트순 |
+      </span>
+      <span :class="[condition === 1 ? 'desc_click' : 'desc']" @click="all()"
+        >모든 사이트순</span
+      >
     </div>
     <!-- 기본 -->
     <div v-if="condition === 1">
@@ -45,7 +53,7 @@
 
     <div class="btn-cover">
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-        이전
+        {{ prepage }}
       </button>
       <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
       <button
@@ -53,7 +61,7 @@
         @click="nextPage"
         class="page-btn"
       >
-        다음
+        {{ nextpage }}
       </button>
     </div>
   </div>
@@ -67,7 +75,9 @@ export default {
       array1: new Set(), // 취업공고✍🏻
       array2: new Set(), // 참고사이트📝
       condition: 1,
-      pageCount: 1
+      pageCount: 1,
+      prepage: '< 이전',
+      nextpage: '다음 >'
     }
   },
   props: {
@@ -114,7 +124,6 @@ export default {
       if (array === this.listArray) {
         const listLeng = array.length
         const listSize = this.pageSize
-        console.log(listLeng, listSize)
         let page = Math.floor(listLeng / listSize)
         if (listLeng % listSize > 0) {
           page += 1
@@ -123,7 +132,6 @@ export default {
       } else {
         const listLeng = array.size
         const listSize = this.pageSize
-        console.log(listLeng, listSize)
         let page = Math.floor(listLeng / listSize)
         if (listLeng % listSize > 0) {
           page += 1
@@ -174,6 +182,13 @@ export default {
 }
 .content {
   margin: 10px 0 0 0;
+}
+.page-btn {
+  border: none;
+  background-color: white;
+  font-size: large;
+  font-weight: 600;
+  cursor: pointer;
 }
 .hover {
   cursor: pointer;

@@ -31,15 +31,17 @@
     </div>
   </div>
   <div class="upload_top">
-    <h3 class="click_h3">사이트 업로드</h3>
-    <h4
-      class="modal_h4"
-      @click="modal = true"
-      @mouseover="over()"
-      @mouseleave="overend()"
-    >
-      {{ click }}
-    </h4>
+    <div class="border">
+      <h3 class="click_h3">사이트 업로드</h3>
+      <h4
+        class="modal_h4"
+        @click="modal = true"
+        @mouseover="over()"
+        @mouseleave="overend()"
+      >
+        {{ click }}
+      </h4>
+    </div>
   </div>
 </template>
 <script>
@@ -184,5 +186,14 @@ export default {
 }
 .upload_top {
   margin-left: 90px;
+}
+.border {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 50px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 </style>

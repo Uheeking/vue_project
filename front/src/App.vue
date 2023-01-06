@@ -3,7 +3,9 @@
     <nav :class="{ active: isActive }">
       <router-link to="/" @click="unactivate">First</router-link> |
       <router-link to="/main" @click="unactivate">Second</router-link> |
-      <router-link to="/about" @click="activate"
+      <router-link
+        to="/about"
+        @click="activate"
         >Third</router-link
       >
       | <router-link to="/test">Test</router-link> |
@@ -15,7 +17,13 @@
 export default {
   data() {
     return {
-      isActive: false
+      isActive: false,
+      path: window.location.pathname
+    }
+  },
+  mounted() {
+    if (window.location.pathname === '/about') {
+      this.isActive = true
     }
   },
   methods: {

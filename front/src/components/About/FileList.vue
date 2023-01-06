@@ -44,5 +44,11 @@ export default {
 }
 .desc {
   cursor: pointer;
+  font-size: 14px;
+}
+.desc_click{
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
 </style>
