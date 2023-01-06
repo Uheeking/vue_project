@@ -201,8 +201,6 @@ export default {
   margin-bottom: 20px;
   font-weight: 500;
   box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.303);
-  /* display: flex;
-  justify-content: center; */
 }
 .detail {
   display: flex;

@@ -109,12 +109,16 @@ export default {
 <style scope>
 .black-bg {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   padding: 20px;
 }
 .white-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   width: 80%;
   margin: 0 auto;

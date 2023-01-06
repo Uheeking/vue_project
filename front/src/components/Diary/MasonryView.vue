@@ -54,15 +54,15 @@
 export default {}
 </script>
 
-<style>
-.list {
+<style scope>
+/* .list {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: start;
   max-height: 1000px;
   padding: 0 10px;
-}
+} */
 
 .item {
   width: 33%;
