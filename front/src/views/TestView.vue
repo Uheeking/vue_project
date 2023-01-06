@@ -1,13 +1,14 @@
 <template>
   <div>
+    <MasonryView />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import MasonryView from '@/components/Diary/MasonryView.vue'
 export default {
   components: {
+    MasonryView
   }
 }
 </script>
