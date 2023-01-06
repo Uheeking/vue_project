@@ -32,7 +32,7 @@
   </div>
   <div class="upload_top">
     <div class="border">
-      <h3 class="click_h3">사이트 업로드</h3>
+      <h3 class="click_h3">Site Upload</h3>
       <h4
         class="modal_h4"
         @click="modal = true"
@@ -57,7 +57,7 @@ export default {
       url: '',
       description: '',
       index: new Set(),
-      click: '클릭'
+      click: 'Click!!'
     }
   },
   methods: {
@@ -100,7 +100,7 @@ export default {
       this.click = '😍'
     },
     overend() {
-      this.click = '클릭'
+      this.click = 'Click!!'
     }
   }
 }
@@ -131,6 +131,7 @@ export default {
   border-radius: 10px;
   margin-bottom: 10px;
   display: inline-block;
+  font-weight: bolder;
 }
 .url {
   padding: 10px;
@@ -146,7 +147,8 @@ export default {
 .modal_h4 {
   z-index: -10;
   cursor: pointer;
-  background-color: #c4a5fd74;
+  background: linear-gradient(to left, #c4a5fd74, pink);
+  /* rgba(78, 70, 229, 0.552); */
   border-radius: 10px;
   display: inline-block;
   color: white;
@@ -173,6 +175,7 @@ export default {
 }
 .dark {
   background-color: gray;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.303);
 }
 .click_p {
   margin-bottom: 0;

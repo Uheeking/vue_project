@@ -18,11 +18,14 @@
       <div class="list" v-for="item in paginatedData" :key="item.id">
         <span class="head">{{ item.keyword }}</span
         ><br />
-        <p class="content">
-          <span @click="redirect(item.url)" class="hover">{{ item.url }}</span
-          ><br />
-          <span>{{ item.description }}</span>
-        </p>
+        <div class="detail">
+          <p class="content">
+            <span @click="redirect(item.url)" class="hover">{{ item.url }}</span
+            ><br />
+            <span>{{ item.description }}</span>
+          </p>
+          <i class="fas fa-trash-alt fa-2x" @click="remove(item.id)"></i>
+        </div>
       </div>
     </div>
     <!-- 취업공고 -->
@@ -39,6 +42,9 @@
         ><br />
         <span>{{ item.description }}</span>
       </p>
+      <span class="removeBtn">
+        <i class="fas fa-trash-alt"></i>
+      </span>
     </div>
     <!-- 참고사이트 -->
     <div class="list" v-else v-for="item in paginatedData2" :key="item">
@@ -68,6 +74,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -102,7 +109,11 @@ export default {
       this.condition = 1
     },
     redirect(url) {
-      window.open(url, '_blank')
+      const result = confirm('사이트로 이동하시겠습니까?')
+      console.log(result)
+      if (result) {
+        window.open(url, '_blank')
+      }
     },
     notices() {
       for (let i = 0; i < this.listArray.length; i++) {
@@ -137,6 +148,22 @@ export default {
           page += 1
         }
         this.pageCount = page
+      }
+    },
+    remove(id) {
+      const result = confirm('정말로 삭제하시겠습니까?')
+      if (result) {
+        axios
+          .post('/api/upload/delete', {
+            id: id
+          })
+          .then((res) => {
+            alert('삭제되었습니다. ')
+            this.$router.go()
+          })
+          .catch((err) => {
+            console.error(err)
+          })
       }
     }
   },
@@ -174,6 +201,11 @@ export default {
   margin-bottom: 20px;
   font-weight: 500;
   box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.303);
+  /* display: flex;
+  justify-content: center; */
+}
+.detail {
+  display: flex;
 }
 .head {
   font-size: 20px;
@@ -182,10 +214,16 @@ export default {
 }
 .content {
   margin: 10px 0 0 0;
+  flex-grow: 1;
 }
 .page-btn {
   border: none;
-  background-color: white;
+  background: linear-gradient(to left, #c4a5fd74, pink);
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+  width: 75px;
+  padding: 8px;
   font-size: large;
   font-weight: 600;
   cursor: pointer;
@@ -193,5 +231,16 @@ export default {
 .hover {
   cursor: pointer;
   text-decoration: underline;
+  display: inline-block;
+  width: 219px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fas {
+  cursor: pointer;
+}
+.remove {
+  color: rgba(128, 128, 128, 0.57);
 }
 </style>

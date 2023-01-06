@@ -12,7 +12,7 @@
 .icon-bar {
   height: 100%;
   width: 90px;
-  background-color: #555;
+  background-color: rgba(54, 46, 212, 0.507);
   position: fixed;
   top: 0;
   left: 0;

@@ -60,4 +60,21 @@ router.get("/read", function (req, res, next) {
   );
 })
 
+router.post("/delete", function (req, res, next) {
+  connection.query(
+    "DELETE FROM write_table WHERE id = "+ req.body.id,
+    (error, rows, fields) => {
+      if (rows) {
+        return res.send({ result: '데이터가 삭제되었습니다. '});
+      }
+      if (error) {
+        return res.send({
+          message: "데이터 출력 중에 에러가 발생했습니다.",
+          other: error,
+        });
+      }
+    }
+  );
+})
+
 module.exports = router;
