@@ -1,10 +1,10 @@
 <template>
   <div class="background">
-    <nav>
-      <router-link to="/">First</router-link> |
-      <router-link to="/main">Second</router-link> |
+    <nav :class="{ active: isActive }">
+      <router-link to="/" @click="unactivate">First</router-link> |
+      <router-link to="/main" @click="unactivate">Second</router-link> |
       <router-link to="/about" @click="activate">Third</router-link>
-      | <router-link to="/study">Fourth</router-link> |
+      | <router-link to="/study" @click="unactivate">Fourth</router-link> |
     </nav>
     <router-view />
   </div>
@@ -48,7 +48,6 @@ body {
 
 nav {
   padding: 30px;
-  margin-left: 90px;
 }
 
 nav a {
@@ -70,5 +69,8 @@ nav a:nth-child(3).router-link-exact-active {
 nav a:nth-child(4).router-link-exact-active {
   font-weight: bold;
   color: #2c3e50;
+}
+.active {
+  margin-left: 90px;
 }
 </style>

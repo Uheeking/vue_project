@@ -25,7 +25,7 @@
       <textarea class="textarea" v-model="description" />
       <br />
       <br />
-      <span class="close upload" @click="ee(i)">업로드</span>
+      <span class="close upload" @click="upload(i)">업로드</span>
       <span class="close" @click="modal = false">닫기</span>
       <br />
     </div>
@@ -70,14 +70,13 @@ export default {
         this.index.delete(i)
       }
     },
-    ee(i) {
+    upload(i) {
       if (this.thema[i] === 'light') {
         console.log('pass')
       } else {
         console.log(this.index)
         const uploadKeyword = []
         for (const value of this.index) {
-          // console.log(this.keyword[value])
           uploadKeyword.push(this.keyword[value])
         }
         axios
@@ -89,7 +88,6 @@ export default {
           .then((res) => {
             alert('업로드 되었습니다. ')
             this.$router.go()
-            // console.log(res.data)
           })
           .catch((err) => {
             console.error(err)
@@ -153,7 +151,6 @@ export default {
   z-index: -10;
   cursor: pointer;
   background: linear-gradient(to left, #c4a5fd74, pink);
-  /* rgba(78, 70, 229, 0.552); */
   border-radius: 10px;
   display: inline-block;
   color: white;
