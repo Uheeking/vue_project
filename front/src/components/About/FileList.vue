@@ -31,7 +31,7 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
 .third {
   margin-left: 90px;
   margin-bottom: 10px;

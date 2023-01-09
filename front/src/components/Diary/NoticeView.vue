@@ -102,13 +102,13 @@ export default {
           password: this.password
         })
         .then((res) => {
-          if (res.data.message === 200) {
-            alert('업로드 되었습니다. ')
+          if (res.data.status === 200) {
+            return alert('업로드 되었습니다. ')
           }
-          if (res.data.message === 400) {
-            alert('업로드되지 못했습니다. ')
+          if (res.data.status === 400) {
+            console.log(res.data)
+            return alert('업로드되지 못했습니다. ')
           }
-          console.log(res.data)
           //   this.$router.go()
         })
         .catch((err) => {
@@ -119,7 +119,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .black-bg {
   width: 100%;
   height: 100vh;

@@ -54,7 +54,7 @@
 export default {}
 </script>
 
-<style scope>
+<style scoped>
 /* .list {
   display: flex;
   flex-direction: column;

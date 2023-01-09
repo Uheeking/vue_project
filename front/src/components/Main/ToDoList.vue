@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .checkBtn {
   cursor: pointer;
   color: #62acde;

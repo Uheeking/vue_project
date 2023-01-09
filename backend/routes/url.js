@@ -74,9 +74,9 @@ router.post("/delete", function (req, res, next) {
 });
 
 router.post("/notice", function (req, res, next) {
-  console.log(req.body.title);
+  // console.log(req.body.title);
   connection.query(
-    "INSERT INTO question_table (title) VALUES ('" +
+    "INSERT INTO question_table (title, language, text, url, password) VALUES ('" +
       req.body.title +
       "', '" +
       req.body.language +

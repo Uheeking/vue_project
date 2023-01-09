@@ -104,7 +104,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .black-bg {
   width: 100%;
   height: 100vh;
