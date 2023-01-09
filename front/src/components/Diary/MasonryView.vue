@@ -51,7 +51,22 @@
   </ul>
 </template>
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  methods: {
+    read() {
+      axios
+        .get('/api/study/read', {})
+        .then((res) => {
+          alert('업로드 되었습니다. ')
+          this.$router.go()
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

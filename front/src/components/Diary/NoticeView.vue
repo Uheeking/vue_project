@@ -1,5 +1,5 @@
 <template>
-  <div class="black-bg" v-if="(modal = true)">
+  <div class="black-bg" v-if="(modal == true)">
     <div class="modal">
       <div class="form">
         <h2 class="stitle">제목</h2>
@@ -94,7 +94,7 @@ export default {
         return alert('비밀번호를 입력해주세요.')
       }
       axios
-        .post('api/upload/notice', {
+        .post('api/study/notice', {
           title: this.title,
           language: this.selected2,
           text: this.description,

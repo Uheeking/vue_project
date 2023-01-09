@@ -5,19 +5,8 @@ const history = require("connect-history-api-fallback");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-// var config = require("./config/config.json");
-// const mysql = require("mysql2");
-
-// const connection = mysql.createConnection(config);
-// connection.connect(function (err) {
-//   if (err) {
-//     console.error("mysql connection error");
-//     console.error(err);
-//     throw err;
-//   }
-// });
-
 var urlRouter = require("./routes/url");
+var studyRouter = require("./routes/study");
 
 var app = express();
 
@@ -33,6 +22,7 @@ app.use(history());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/upload", urlRouter);
+app.use("/api/study", studyRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
