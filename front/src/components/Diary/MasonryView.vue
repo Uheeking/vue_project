@@ -1,7 +1,10 @@
 <template>
   <div class="black-bg" v-if="modal == true" @click="modal = false">
     <div class="white-bg" @click.stop="">
-      <div class="title">{{ this.item_detail.title }}</div>
+      <div class="title">
+        {{ this.item_detail.title
+        }}<i class="fa-solid fa-xmark close" @click="modal = false"></i>
+      </div>
       <label class="head">사용언어</label>
       <br />
       <span v-for="item in img" :key="item">
@@ -9,15 +12,16 @@
       </span>
       <br />
       <label class="head">내용</label>
-      <p>{{ this.item_detail.text }}</p>
-      <span class="close" @click="modal = false">닫기</span>
+      <p class="p-bottom">{{ this.item_detail.text }}</p>
+      <!-- <span class="close" @click="modal = false">닫기</span> -->
       <br />
+      <label>댓글</label><br />
+      <textarea class="input" />
     </div>
   </div>
   <ul class="list">
     <li class="item" v-for="item in list" :key="item.id">
       <div class="card" style="height: 250px">
-        <!-- {{ item }} -->
         <p class="p">{{ item.title }}</p>
         <br />
         <p>{{ item.language }}</p>
@@ -96,7 +100,7 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   padding: 20px;
-  margin-top: -200px;
+  margin-top: -250px;
 }
 .white-bg {
   position: fixed;
@@ -127,6 +131,10 @@ export default {
   margin: 10px;
   font-size: 20px;
   font-weight: 500;
+}
+p-bottom {
+  display: inline-block;
+  margin-bottom: 15px;
 }
 .list {
   column-count: 3;
@@ -170,6 +178,9 @@ export default {
   text-overflow: ellipsis;
   /* margin: 10px; */
 }
+.input {
+  border-style: solid;
+}
 .bottom {
   background-color: rgba(12, 161, 12, 0.631);
   color: white;
@@ -180,8 +191,9 @@ export default {
   /* border-style: solid; */
 }
 .close {
+  float: right;
   cursor: pointer;
-  margin: 10px;
+  /* margin: 7px; */
   display: inline-block;
   background: linear-gradient(
     to bottom right,
@@ -189,7 +201,7 @@ export default {
     rgba(61, 173, 121, 0.756)
   );
   color: white;
-  padding: 10px;
+  padding: 7px;
   font-weight: bold;
   border-radius: 8px;
 }
