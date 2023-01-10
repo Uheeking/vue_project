@@ -241,4 +241,12 @@ export default {
 .remove {
   color: rgba(128, 128, 128, 0.57);
 }
+.desc {
+  cursor: pointer;
+  font-size: 14px;
+}
+.desc_click {
+  font-size: 14px;
+  font-weight: bold;
+}
 </style>

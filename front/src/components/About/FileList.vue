@@ -53,13 +53,5 @@ export default {
   margin-left: 90px;
   width: 75%;
 }
-.desc {
-  cursor: pointer;
-  font-size: 14px;
-}
-.desc_click {
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-}
+
 </style>

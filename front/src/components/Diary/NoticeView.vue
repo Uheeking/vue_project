@@ -1,5 +1,5 @@
 <template>
-  <div class="black-bg" v-if="(modal == true)">
+  <div class="black-bg" v-if="modal == true" @click="modal = false">
     <div class="modal">
       <div class="form">
         <h2 class="stitle">제목</h2>
@@ -50,7 +50,7 @@
       <p class="close" @click="modal = false">닫기</p>
     </div>
   </div>
-  <span class="studynotice" @click="modal = true">스터디 공고</span>
+  <span class="studynotice" @click="modal = true">글쓰기</span>
 </template>
 
 <script>
@@ -124,6 +124,9 @@ export default {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+  margin-top: -200px;
 }
 .modal {
   position: fixed;
@@ -131,9 +134,9 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 20px 10px;
-  width: 500px;
-  height: 500px;
+  padding: 20px 20px;
+  width: 80%;
+  border-radius: 8px;
 }
 .stitle {
   display: inline;
@@ -157,11 +160,11 @@ export default {
   cursor: pointer;
 }
 .desc {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 .form {
-  margin: 10px;
+  margin: 20px;
 }
 .textarea {
   width: 450px;
@@ -175,7 +178,7 @@ export default {
 }
 .close {
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
   display: inline-block;
   margin-right: 10px;
   color: white;

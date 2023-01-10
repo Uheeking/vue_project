@@ -1,5 +1,5 @@
 <template>
-  <div class="black-bg" v-if="modal == true">
+  <div class="black-bg" v-if="(modal == true)" @click="modal = false">
     <div class="white-bg">
       <h2>키워드 선택</h2>
       <h4 v-if="name">
@@ -79,6 +79,17 @@ export default {
         for (const value of this.index) {
           uploadKeyword.push(this.keyword[value])
         }
+        console.log(uploadKeyword.length)
+        if (uploadKeyword.length === 0) {
+          return alert('키워드를 선택해주세요.')
+        }
+        if (this.url === '') {
+          return alert('URL을 입력해주세요.')
+        }
+        if (this.description === '') {
+          return alert('사이트 설명을 입력해주세요.')
+        }
+        console.log(uploadKeyword, this.url, this.description)
         axios
           .post('/api/upload/write', {
             keyword: uploadKeyword,
