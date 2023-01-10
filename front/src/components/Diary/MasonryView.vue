@@ -10,7 +10,7 @@
       </div>
     </li>
   </ul>
-  <v-card class="mx-auto" max-width="344">
+  <!-- <v-card class="mx-auto" max-width="344">
     <v-img
       src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
       height="200px"
@@ -43,7 +43,7 @@
         </v-card-text>
       </div>
     </v-expand-transition>
-  </v-card>
+  </v-card> -->
 </template>
 <script>
 import axios from 'axios'

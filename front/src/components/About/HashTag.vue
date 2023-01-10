@@ -2,27 +2,27 @@
   <div class="black-bg" v-if="(modal == true)" @click="(modal = false)">
     <div class="white-bg" @click.stop="">
       <h2>키워드 선택</h2>
-      <h4 v-if="name">
+      <h4 class="margin-h4" v-if="name">
         {{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.
       </h4>
-      <h4 v-else>업로드하고자 하는 키워드를 선택해주세요.</h4>
+      <h4 class="margin-h4" v-else>업로드하고자 하는 키워드를 선택해주세요.</h4>
       <span
         @click="changeColor(i)"
-        :class="[thema[i] === 'light' ? 'light same' : 'dark same']"
+        :class="[thema[i] === 'light' ? 'light same bottom-margin' : 'dark same bottom-margin']"
         v-for="(key, i) in keyword"
         :key="i"
         >{{ key }}</span
       >
       <h2>URL 입력</h2>
-      <h4 v-if="name">{{ name }}님이 적고자 하는 URL을 입력해주세요.</h4>
-      <h4 v-else>적고자 하는 URL을 입력해주세요.</h4>
-      <input class="url" v-model="url" />
+      <h4 class="margin-h4" v-if="name">{{ name }}님이 적고자 하는 URL을 입력해주세요.</h4>
+      <h4 class="margin-h4" v-else>적고자 하는 URL을 입력해주세요.</h4>
+      <input class="url border-style bottom-margin" v-model="url" />
       <h2>사이트 설명</h2>
-      <h4 v-if="name">
+      <h4 class="margin-h4" v-if="name">
         {{ name }}님이 업로드하고자 하는 사이트에 대한 설명을 적어주세요.
       </h4>
-      <h4 v-else>업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
-      <textarea class="textarea" v-model="description" />
+      <h4 class="margin-h4" v-else>업로드하고자 하는 사이트에 대한 설명을 적어주세요.</h4>
+      <textarea class="textarea border-style" v-model="description" />
       <br />
       <br />
       <span class="close upload" @click="upload(i)">업로드</span>
@@ -135,6 +135,15 @@ export default {
   background: white;
   border-radius: 8px;
   padding: 20px;
+}
+.margin-h4{
+  margin: 10px;
+}
+.bottom-margin{
+  margin-bottom: 20px;
+}
+.border-style{
+  border-style: solid;
 }
 .close {
   background-color: #a377f5b9;

@@ -1,5 +1,5 @@
 <template>
-  <div class="black-bg" v-if="modal == true" @click="modal = false">
+  <div class="black-bg" v-show="modal == true" @click="modal = false">
     <div class="modal" @click.stop="">
       <div class="form">
         <h2 class="stitle">제목</h2>
@@ -18,7 +18,12 @@
           </option>
         </select>
         <br />
-        <input type="text" v-model="selected2" class="langs" />
+        <input
+          type="text"
+          v-model="selected2"
+          class="langs"
+          disabled
+        />
       </div>
       <div>
         <h2 class="desc">설명</h2>
@@ -124,11 +129,10 @@ export default {
 <style scoped>
 .black-bg {
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  padding: 20px;
-  margin-top: -200px;
+  margin-top: -140px;
 }
 .modal {
   position: fixed;
@@ -137,9 +141,11 @@ export default {
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px 20px;
-  width: 500px;
-  height: 550px;
+  width: 80%;
   border-radius: 8px;
+}
+textarea {
+  border-style: solid;
 }
 .stitle {
   display: inline;
