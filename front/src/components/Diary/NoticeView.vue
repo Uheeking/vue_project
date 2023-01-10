@@ -18,12 +18,7 @@
           </option>
         </select>
         <br />
-        <input
-          type="text"
-          v-model="selected2"
-          class="langs"
-          disabled
-        />
+        <input type="text" v-model="selected2" class="langs" disabled />
       </div>
       <div>
         <h2 class="desc">설명</h2>
@@ -56,7 +51,9 @@
       <p class="close" @click="modal = false">닫기</p>
     </div>
   </div>
-  <span class="studynotice" @click="modal = true">글쓰기</span>
+  <div class="reverse">
+    <span class="studynotice" @click="modal = true">글쓰기</span>
+  </div>
 </template>
 
 <script>
@@ -142,7 +139,7 @@ export default {
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px 20px;
-  width: 80%;
+  width: 70%;
   border-radius: 8px;
   z-index: 100;
 }
@@ -169,6 +166,14 @@ textarea {
 }
 .studynotice {
   cursor: pointer;
+  background-color: rgba(12, 161, 12, 0.631);
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  /* float: right */
 }
 .desc {
   margin-top: 10px;
@@ -201,5 +206,10 @@ textarea {
     rgb(255, 255, 0),
     rgba(61, 173, 121, 0.756)
   );
+}
+.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 10px;
 }
 </style>
