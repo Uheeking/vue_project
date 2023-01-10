@@ -56,7 +56,7 @@
       <p class="close" @click="modal = false">닫기</p>
     </div>
   </div>
-  <span class="studynotice" @click="modal = true">스터디 공고</span>
+  <span class="studynotice" @click="modal = true">글쓰기</span>
 </template>
 
 <script>
@@ -72,7 +72,8 @@ export default {
         { name: 'React', value: 'React' },
         { name: 'javascript', value: 'javascript' },
         { name: 'Vue', value: 'Vue' },
-        { name: 'Node.js', value: 'Node.js' }
+        { name: 'Node.js', value: 'Node.js' },
+        { name: 'Flutter', value: 'Flutter' }
       ],
       selected: '',
       selected2: [],
@@ -143,6 +144,7 @@ export default {
   padding: 20px 20px;
   width: 80%;
   border-radius: 8px;
+  z-index: 100;
 }
 textarea {
   border-style: solid;

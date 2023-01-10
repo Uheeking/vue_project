@@ -66,7 +66,12 @@ nav a:nth-child(3).router-link-exact-active {
 }
 nav a:nth-child(4).router-link-exact-active {
   font-weight: bold;
-  color: #2c3e50;
+  background: linear-gradient(to left, yellow, rgb(2, 95, 64));
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: underline;
+  text-decoration-color: green;
 }
 .active {
   margin-left: 90px;
