@@ -1,88 +1,85 @@
 <template>
   <ul class="list">
-    <li class="item">
-      <div class="card" style="height: 250px">1</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 120px">2</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 180px">3</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 130px">4</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 270px">5</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 320px">6</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 110px">7</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 190px">8</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 210px">9</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 80px">10</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 220px">11</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 210px">12</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 100px">13</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 160px">14</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 190px">15</div>
-    </li>
-    <li class="item">
-      <div class="card" style="height: 320px">11</div>
+    <li class="item" v-for="item in list" :key="item.id">
+      <div class="card" style="height: 250px">
+        <!-- {{ item }} -->
+        {{ item.title }} <br />
+        {{ item.language }}
+        {{ item.text }}
+        <span class="bottom">숑ㄹㄴㅇ런이러</span>
+      </div>
     </li>
   </ul>
+  <v-card class="mx-auto" max-width="344">
+    <v-img
+      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+      height="200px"
+    ></v-img>
+
+    <v-card-title> Top western road trips </v-card-title>
+
+    <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+
+    <v-card-actions>
+      <v-btn color="orange lighten-2" text> Explore </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="show = !show">
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          I'm a thing. But, like most politicians, he promised more than he
+          could deliver. You won't have time for sleeping, soldier, not with all
+          the bed making you'll be doing. Then we'll go with that data file!
+          Hey, you add a one and two zeros to that or we walk! You're going to
+          do his laundry? I've got to find a way to escape.
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
 </template>
 <script>
 import axios from 'axios'
 export default {
-  methods: {
-    read() {
-      axios
-        .get('/api/study/read', {})
-        .then((res) => {
-          alert('업로드 되었습니다. ')
-          this.$router.go()
-        })
-        .catch((err) => {
-          console.error(err)
-        })
+  data() {
+    return {
+      list: [],
+      show: false
     }
+  },
+  created() {
+    axios
+      .get('/api/study/read')
+      .then((res) => {
+        console.log(res.data.data)
+        this.list = res.data.data
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 }
 </script>
 
 <style scoped>
-/* .list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: start;
-  max-height: 1000px;
-  padding: 0 10px;
-} */
+.list {
+  column-count: 3;
+  column-gap: 20px;
+  padding: 20px;
+}
 
 .item {
-  width: 33%;
-  padding: 20px 10px 0;
-  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -90,17 +87,13 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #eee;
-  font-size: 40px;
-  font-weight: 700;
-  color: #fff;
+  border-radius: 8px;
+}
+.bottom {
+  background-color: white;
 }
 
-.text {
-  padding: 0 20px 20px;
-  font-size: 20px;
-  color: #ff3b69;
-}
-
+/* for reset */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Roboto,
     'Segoe UI', Arial, sans-serif;

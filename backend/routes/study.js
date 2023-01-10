@@ -44,26 +44,22 @@ router.post("/notice", function (req, res, next) {
 });
 
 router.get("/read", function (req, res, next) {
-  connection.query(
-    "INSERT INTO write_table (keyword, url, description) VALUES ('" +
-      req.body.keyword +
-      "', '" +
-      req.body.url +
-      "', '" +
-      req.body.description +
-      "')",
-    (error, rows, fields) => {
-      if (rows) {
-        return res.send({ result: "데이터가 제대로 전송되었습니다. " });
-      }
-      if (error) {
-        return res.send({
-          message: "데이터 입력 중에 에러가 발생했습니다.",
-          other: error,
-        });
-      }
-      console.log("여기야", rows);
+  connection.query("SELECT * FROM question_table", (error, rows, fields) => {
+    if (rows) {
+      return res.send({
+        status: 200,
+        result: "데이터가 제대로 전송되었습니다. ",
+        data: rows,
+      });
     }
-  );
+    if (error) {
+      return res.send({
+        status: 400,
+        message: "데이터 입력 중에 에러가 발생했습니다.",
+        other: error,
+      });
+    }
+    console.log("여기야", rows);
+  });
 });
 module.exports = router;

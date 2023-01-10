@@ -1,6 +1,6 @@
 <template>
   <div class="black-bg" v-if="modal == true" @click="modal = false">
-    <div class="modal">
+    <div class="modal" @click.stop="">
       <div class="form">
         <h2 class="stitle">제목</h2>
         <input
@@ -44,13 +44,14 @@
           class="fontsize"
           v-model="password"
           placeholder="비밀번호를 입력해주세요."
+          @keyup.enter="upload()"
         />
       </div>
       <p class="close" @click="upload()">업로드</p>
       <p class="close" @click="modal = false">닫기</p>
     </div>
   </div>
-  <span class="studynotice" @click="modal = true">글쓰기</span>
+  <span class="studynotice" @click="modal = true">스터디 공고</span>
 </template>
 
 <script>
@@ -103,13 +104,14 @@ export default {
         })
         .then((res) => {
           if (res.data.status === 200) {
-            return alert('업로드 되었습니다. ')
+            alert('업로드 되었습니다. ')
+            return this.$router.go()
           }
           if (res.data.status === 400) {
             console.log(res.data)
-            return alert('업로드되지 못했습니다. ')
+            alert('업로드되지 못했습니다. ')
+            return this.$router.go()
           }
-          //   this.$router.go()
         })
         .catch((err) => {
           console.error(err)
@@ -135,7 +137,8 @@ export default {
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px 20px;
-  width: 80%;
+  width: 500px;
+  height: 550px;
   border-radius: 8px;
 }
 .stitle {

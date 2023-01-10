@@ -1,6 +1,6 @@
 <template>
-  <div class="black-bg" v-if="(modal == true)" @click="modal = false">
-    <div class="white-bg">
+  <div class="black-bg" v-if="(modal == true)" @click="(modal = false)">
+    <div class="white-bg" @click.stop="">
       <h2>키워드 선택</h2>
       <h4 v-if="name">
         {{ name }}님이 업로드하고자 하는 키워드를 선택해주세요.
