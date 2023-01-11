@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 0 40px;">
     <TitleView />
     <NoticeView />
     <MasonryView />

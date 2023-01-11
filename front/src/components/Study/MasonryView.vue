@@ -26,8 +26,9 @@
           <span class="close" @click="add(this.item_detail.id)">등록</span>
         </div>
         <div class="reply">
-          <span class="close" @click="delete this.item_detail.id">삭제</span>
-          <span class="close" @click="add(this.item_detail.id)">수정</span>
+          <span class="close" @click="write_delete(this.item_detail.id)"
+            >삭제</span
+          >
         </div>
         <i
           v-show="reply_show == false"
@@ -43,7 +44,8 @@
           <div v-for="list in id_reply" :key="list">
             <div v-if="this.item_detail.id === list.question_num">
               <span style="font-weight: bold"> {{ list.nickname }}</span>
-              {{ list.reply }} <i class="fas fa-trash-alt"></i>
+              {{ list.reply }}
+              <i class="fas fa-trash-alt" @click="reply_delete(list.id)"></i>
             </div>
           </div>
         </div>
@@ -174,25 +176,51 @@ export default {
         alert('닉네임을 입력해주세요.')
       }
     },
-    delete(id) {
-      axios
-        .post('/api/study/delete', {
-          id: id
-        })
-        .then((res) => {
-          if (res.data.status === 200) {
-            alert('업로드 되었습니다. ')
-            return this.$router.go()
-          }
-          if (res.data.status === 400) {
-            console.log(res.data)
-            alert('업로드되지 못했습니다. ')
-            // return this.$router.go()
-          }
-        })
-        .catch((err) => {
-          console.error(err)
-        })
+    write_delete(id) {
+      const result = confirm('정말로 삭제하시겠습니까?')
+      if (result) {
+        axios
+          .post('/api/study/write_delete', {
+            id: id
+          })
+          .then((res) => {
+            if (res.data.status === 200) {
+              alert('댓글이 삭제되었습니다. ')
+              return this.$router.go()
+            }
+            if (res.data.status === 400) {
+              // console.log(res.data)
+              alert('댓글이 삭제되지 않았습니다. ')
+              // return this.$router.go()
+            }
+          })
+          .catch((err) => {
+            console.error(err)
+          })
+      }
+    },
+    reply_delete(id) {
+      const result = confirm('댓글을 삭제하시겠습니까?')
+      if (result) {
+        axios
+          .post('/api/study/reply_delete', {
+            id: id
+          })
+          .then((res) => {
+            if (res.data.status === 200) {
+              alert('댓글이 삭제되었습니다. ')
+              return this.$router.go()
+            }
+            if (res.data.status === 400) {
+              // console.log(res.data)
+              alert('댓글이 삭제되지 않았습니다. ')
+              // return this.$router.go()
+            }
+          })
+          .catch((err) => {
+            console.error(err)
+          })
+      }
     }
   }
 }
@@ -200,12 +228,13 @@ export default {
 
 <style scoped>
 .black-bg {
-  width: 100%;
+  width: 120%;
   height: 120vh;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   padding: 20px;
   margin-top: -250px;
+  margin-left: -100px;
 }
 .white-bg {
   position: fixed;
@@ -217,7 +246,7 @@ export default {
   margin: 0 auto;
   background: white;
   border-radius: 8px;
-  /* padding: 20px; */
+  padding-bottom: 20px;
 }
 .title {
   font-size: 27px;
@@ -348,6 +377,9 @@ p-bottom {
 .fa-chevron-up {
   cursor: pointer;
   padding: 15px;
+}
+.fa-trash-alt{
+  cursor: pointer;
 }
 
 /* for reset */

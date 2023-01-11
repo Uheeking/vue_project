@@ -128,11 +128,12 @@ export default {
 
 <style scoped>
 .black-bg {
-  width: 100%;
+  width: 120%;
   height: 120vh;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  margin-top: -140px;
+  margin-top: -190px;
+  margin-left: -100px;
 }
 .modal {
   position: fixed;

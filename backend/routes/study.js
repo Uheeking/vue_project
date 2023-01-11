@@ -110,4 +110,38 @@ router.get("/reply_read", function (req, res, next) {
     }
   });
 });
+
+router.post("/write_delete", function (req, res, next) {
+  connection.query(
+    "DELETE FROM question_table WHERE id = " + req.body.id,
+    (error, rows, fields) => {
+      if (rows) {
+        return res.send({ status: 200, result: "데이터가 삭제되었습니다. " });
+      }
+      if (error) {
+        return res.send({status: 400, 
+          message: "데이터 출력 중에 에러가 발생했습니다.",
+          other: error,
+        });
+      }
+    }
+  );
+});
+
+router.post("/reply_delete", function (req, res, next) {
+  connection.query(
+    "DELETE FROM reply_table WHERE id = " + req.body.id,
+    (error, rows, fields) => {
+      if (rows) {
+        return res.send({ status: 200, result: "데이터가 삭제되었습니다. " });
+      }
+      if (error) {
+        return res.send({status: 400, 
+          message: "데이터 출력 중에 에러가 발생했습니다.",
+          other: error,
+        });
+      }
+    }
+  );
+});
 module.exports = router;
