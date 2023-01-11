@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import TitleView from '@/components/Diary/TitleView.vue'
-import NoticeView from '@/components/Diary/NoticeView.vue'
-import MasonryView from '@/components/Diary/MasonryView.vue'
+import TitleView from '@/components/Study/TitleView.vue'
+import NoticeView from '@/components/Study/NoticeView.vue'
+import MasonryView from '@/components/Study/MasonryView.vue'
 export default {
   components: {
     TitleView,
