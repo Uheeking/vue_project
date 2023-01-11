@@ -45,7 +45,10 @@
             <div v-if="this.item_detail.id === list.question_num">
               <span style="font-weight: bold"> {{ list.nickname }}</span>
               {{ list.reply }}
-              <i class="fas fa-trash-alt" @click="reply_delete(list.id)"></i>
+              <i
+                class="fas fa-trash-alt"
+                @click="reply_delete(list.id, list.password)"
+              ></i>
             </div>
           </div>
         </div>
@@ -144,7 +147,7 @@ export default {
       if (this.nickname !== '') {
         if (this.reply !== '') {
           this.result = prompt('비밀번호를 입력해주세요.')
-          if (this.result !== '') {
+          if (this.result !== '' && this.result !== null) {
             axios
               .post('api/study/write', {
                 reply: this.reply,
@@ -199,9 +202,10 @@ export default {
           })
       }
     },
-    reply_delete(id) {
-      const result = confirm('댓글을 삭제하시겠습니까?')
-      if (result) {
+    reply_delete(id, password) {
+      console.log(password)
+      const result = prompt('비밀번호를 입력해주세요.')
+      if (result === password) {
         axios
           .post('/api/study/reply_delete', {
             id: id
@@ -220,6 +224,8 @@ export default {
           .catch((err) => {
             console.error(err)
           })
+      } else {
+        alert('비밀번호가 틀렸습니다. ')
       }
     }
   }
@@ -378,7 +384,7 @@ p-bottom {
   cursor: pointer;
   padding: 15px;
 }
-.fa-trash-alt{
+.fa-trash-alt {
   cursor: pointer;
 }
 
