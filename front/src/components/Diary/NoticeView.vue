@@ -1,58 +1,60 @@
 <template>
-  <div class="black-bg" v-show="modal == true" @click="modal = false">
-    <div class="modal" @click.stop="">
-      <div class="form">
-        <h2 class="stitle">제목</h2>
-        <input
-          type="text"
-          class="titleinput"
-          v-model="title"
-          placeholder="제목을 입력해주세요."
-        />
+  <div>
+    <div class="black-bg" v-show="modal == true" @click="modal = false">
+      <div class="modal" @click.stop="">
+        <div class="form">
+          <h2 class="stitle">제목</h2>
+          <input
+            type="text"
+            class="titleinput"
+            v-model="title"
+            placeholder="제목을 입력해주세요."
+          />
+        </div>
+        <div class="form">
+          <h2 class="stitle">사용 언어</h2>
+          <select class="select" v-model="selected" @change="func(selected)">
+            <option v-for="(item, i) in option" :key="i" :value="item.value">
+              {{ item.name }}
+            </option>
+          </select>
+          <br />
+          <input type="text" v-model="selected2" class="langs" disabled />
+        </div>
+        <div>
+          <h2 class="desc">설명</h2>
+          <textarea
+            class="textarea"
+            v-model="description"
+            placeholder="설명을 적어주세요."
+          />
+        </div>
+        <div class="top">
+          <h3 class="stitle">링크</h3>
+          <input
+            type="text"
+            class="fontsize"
+            v-model="url"
+            placeholder="링크를 입력해주세요."
+          />
+        </div>
+        <div class="top">
+          <h3 class="stitle">비밀번호</h3>
+          <input
+            type="password"
+            class="fontsize"
+            v-model="password"
+            placeholder="비밀번호를 입력해주세요."
+            @keyup.enter="upload()"
+          />
+        </div>
+        <p class="close" @click="upload()">업로드</p>
+        <p class="close" @click="modal = false">닫기</p>
       </div>
-      <div class="form">
-        <h2 class="stitle">사용 언어</h2>
-        <select class="select" v-model="selected" @change="func(selected)">
-          <option v-for="(item, i) in option" :key="i" :value="item.value">
-            {{ item.name }}
-          </option>
-        </select>
-        <br />
-        <input type="text" v-model="selected2" class="langs" disabled />
-      </div>
-      <div>
-        <h2 class="desc">설명</h2>
-        <textarea
-          class="textarea"
-          v-model="description"
-          placeholder="설명을 적어주세요."
-        />
-      </div>
-      <div class="top">
-        <h3 class="stitle">링크</h3>
-        <input
-          type="text"
-          class="fontsize"
-          v-model="url"
-          placeholder="링크를 입력해주세요."
-        />
-      </div>
-      <div class="top">
-        <h3 class="stitle">비밀번호</h3>
-        <input
-          type="password"
-          class="fontsize"
-          v-model="password"
-          placeholder="비밀번호를 입력해주세요."
-          @keyup.enter="upload()"
-        />
-      </div>
-      <p class="close" @click="upload()">업로드</p>
-      <p class="close" @click="modal = false">닫기</p>
     </div>
-  </div>
-  <div class="reverse">
-    <span class="studynotice" @click="modal = true">글쓰기</span>
+    <div class="reverse">
+      <span class="studynotice" @click="modal = true">글쓰기</span>
+    </div>
   </div>
 </template>
 

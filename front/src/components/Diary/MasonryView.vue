@@ -1,40 +1,81 @@
 <template>
-  <div class="black-bg" v-if="modal == true" @click="modal = false">
-    <div class="white-bg" @click.stop="">
-      <div class="title">
-        {{ this.item_detail.title
-        }}<i class="fa-solid fa-xmark close" @click="modal = false"></i>
-      </div>
-      <label class="head">사용언어</label>
-      <br />
-      <span v-for="item in img" :key="item">
-        <img :src="item" class="image" />
-      </span>
-      <br />
-      <label class="head">내용</label>
-      <p class="p-bottom">{{ this.item_detail.text }}</p>
-      <!-- <span class="close" @click="modal = false">닫기</span> -->
-      <br />
-      <label>댓글</label><br />
-      <textarea class="input" />
-    </div>
-  </div>
-  <ul class="list">
-    <li class="item" v-for="item in list" :key="item.id">
-      <div class="card" style="height: 250px">
-        <p class="p">{{ item.title }}</p>
+  <div>
+    <div
+      class="black-bg"
+      v-if="modal == true"
+      @click="modal = false"
+      @keyup.esc="modal = false"
+    >
+      <div class="white-bg" @click.stop="">
+        <div class="title">
+          {{ this.item_detail.title
+          }}<i class="fa-solid fa-xmark close-top" @click="modal = false"></i>
+        </div>
+        <label class="head">사용언어</label>
         <br />
-        <p>{{ item.language }}</p>
-        <p class="p-content">{{ item.text }}</p>
-        <div
-          class="bottom"
-          @click=";(modal = true), (item_detail = item), split(item.language)"
-        >
-          자세히 보기 >>
+        <span v-for="item in img" :key="item">
+          <img :src="item" class="image" />
+        </span>
+        <br />
+        <label class="head">내용</label>
+        <p class="p-bottom">{{ this.item_detail.text }}</p>
+        <label class="head-reply">댓글</label>
+        <input class="head-reply" placeholder="닉네임" v-model="nickname" />
+        <div class="reply">
+          <textarea class="input" v-model="reply" />
+          <span class="close" @click="add(this.item_detail.id)">등록</span>
+        </div>
+        <div class="reply">
+          <span class="close" @click="delete this.item_detail.id">삭제</span>
+          <span class="close" @click="add(this.item_detail.id)">수정</span>
+        </div>
+        <i
+          v-show="reply_show == false"
+          @click="reply_show = true"
+          class="fas fa-regular fa-chevron-down fa-lg"
+        ></i>
+        <i
+          v-show="reply_show == true"
+          @click="reply_show = false"
+          class="fas fa-regular fa-chevron-up fa-lg"
+        ></i>
+        <div v-show="reply_show == true">
+          <div v-for="item in id_reply" :key="item">
+            <div v-if="this.item_detail.id === Number(item.id)">
+              <span style="font-weight: bold">
+                {{ this.item_detail.id }}
+                {{ item[i].nickname }}</span
+              >
+            </div>
+            {{ i }}
+            {{ item }}
+            <!-- {{ this.item_detail.id }}
+            {{ Number(item[i].question_num) }} -->
+          </div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+    <div>
+      <ul class="list">
+        <li class="item" v-for="item in list" :key="item.id">
+          <div class="card" style="height: 250px">
+            <p class="p">{{ item.title }}</p>
+            <br />
+            <p>{{ item.language }}</p>
+            <p class="p-content">{{ item.text }}</p>
+            <div
+              class="bottom"
+              @click="
+                ;(modal = true), (item_detail = item), split(item.language)
+              "
+            >
+              자세히 보기 >>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 <script>
 import axios from 'axios'
@@ -44,16 +85,30 @@ export default {
       list: [],
       show: false,
       modal: false,
+      reply_show: false,
       item_detail: {},
-      img: []
+      img: [],
+      reply: '',
+      resutl: '',
+      id_reply: [],
+      nickname: ''
     }
   },
   created() {
     axios
       .get('/api/study/read')
       .then((res) => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         this.list = res.data.data
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    axios
+      .get('/api/study/reply_read')
+      .then((res) => {
+        console.log(res.data.data)
+        this.id_reply.push(res.data.data)
       })
       .catch((err) => {
         console.error(err)
@@ -88,6 +143,62 @@ export default {
       }
       this.img = source
       console.log(this.img)
+    },
+    add(id) {
+      if (this.nickname !== '') {
+        if (this.reply !== '') {
+          this.result = prompt('비밀번호를 입력해주세요.')
+          if (this.result !== '') {
+            axios
+              .post('api/study/write', {
+                reply: this.reply,
+                password: this.result,
+                id: id,
+                nickname: this.nickname
+              })
+              .then((res) => {
+                if (res.data.status === 200) {
+                  alert('업로드 되었습니다. ')
+                  return this.$router.go()
+                }
+                if (res.data.status === 400) {
+                  console.log(res.data)
+                  alert('업로드되지 못했습니다. ')
+                  // return this.$router.go()
+                }
+              })
+              .catch((err) => {
+                console.error(err)
+              })
+          } else {
+            alert('비밀번호를 입력해주세요.')
+          }
+        } else {
+          alert('댓글을 등록해주세요.')
+        }
+      } else {
+        alert('닉네임을 입력해주세요.')
+      }
+    },
+    delete(id) {
+      axios
+        .post('/api/study/delete', {
+          id: id
+        })
+        .then((res) => {
+          if (res.data.status === 200) {
+            alert('업로드 되었습니다. ')
+            return this.$router.go()
+          }
+          if (res.data.status === 400) {
+            console.log(res.data)
+            alert('업로드되지 못했습니다. ')
+            // return this.$router.go()
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
@@ -131,6 +242,23 @@ export default {
   margin: 10px;
   font-size: 20px;
   font-weight: 500;
+}
+.reply {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.head-reply {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.input {
+  border-style: solid;
+  margin-right: 10px;
+  width: 70%;
 }
 p-bottom {
   display: inline-block;
@@ -178,9 +306,7 @@ p-bottom {
   text-overflow: ellipsis;
   /* margin: 10px; */
 }
-.input {
-  border-style: solid;
-}
+
 .bottom {
   background-color: rgba(12, 161, 12, 0.631);
   color: white;
@@ -189,6 +315,21 @@ p-bottom {
   padding: 10px;
   font-weight: bold;
   /* border-style: solid; */
+}
+.close-top {
+  float: right;
+  cursor: pointer;
+  /* margin: 7px; */
+  display: inline-block;
+  background: linear-gradient(
+    to bottom right,
+    rgb(255, 255, 0),
+    rgba(61, 173, 121, 0.756)
+  );
+  color: white;
+  padding: 7px;
+  font-weight: bold;
+  border-radius: 8px;
 }
 .close {
   float: right;
@@ -204,6 +345,15 @@ p-bottom {
   padding: 7px;
   font-weight: bold;
   border-radius: 8px;
+  padding-top: 13px;
+}
+.fa-chevron-down {
+  cursor: pointer;
+  padding: 15px;
+}
+.fa-chevron-up {
+  cursor: pointer;
+  padding: 15px;
 }
 
 /* for reset */
