@@ -26,6 +26,10 @@ Vue를 공부하기 위해, 프로젝트를 기획하였다. 나한테 필요한
 ## 1) 첫번째 페이지
 <img width="354" alt="image" src="https://user-images.githubusercontent.com/90121929/230698894-cc45a2db-550d-4c5e-b6ba-ba8e7f0fd694.png">
 오늘날짜와 날씨를 확인할 수 있다. 이를 ***day.js를 모듈을 가져와서 바로 쓸 수*** 있게 하였고, 서울기준으로 해서 날씨를 가져오게 하였다. 그리고 날씨에 따라 아이콘이 바뀌게 설정하였다. 그리고 input태그를 넣어 본인의 이름을 설정하게 하였다.
-![image](https://user-images.githubusercontent.com/90121929/230698865-992d6aac-029b-432b-85fa-04a795f6088e.png)
-![image](https://user-images.githubusercontent.com/90121929/230698900-8b5b09fb-87f6-4abd-b3b6-13933169a5a2.png)
+<img width="551" alt="image" src="https://user-images.githubusercontent.com/90121929/230699042-03e3cac2-b858-4aa1-a1cd-f17a8f86224f.png">
+이렇게 input에 자신의 이름을 설정하면 반겨주게 하였다. 그리고 나머지 페이지에서 본인의 이름이 보이게 설정하였다.
 
+## 2) 두번째 페이지
+![image](https://user-images.githubusercontent.com/90121929/230699049-61e184b3-4d71-4a1e-beb6-1b17e33f8a0a.png)
+
+![image](https://user-images.githubusercontent.com/90121929/230699062-f8744e5c-06c2-4f0e-8a66-3ac5002c43ce.png)
